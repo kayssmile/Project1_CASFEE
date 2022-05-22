@@ -16,13 +16,11 @@
         
         <main>
             <div class="transparent"></div>
-            <section class="new">
-                <div class="new__btn">
-                    <p class="new__btn--text">New TODO</p>
-                    <svg class="new__btn--svg" width="21" height="13" viewBox="0 0 21 13" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M1 1L10.5 11L20 1" class="new__btn--svg" stroke-width="2"/>
-                    </svg>
+            <section class="newtodo">
+                <div class="newtodo__btn">
+                    <p class="newtodo__btn--text">New TODO</p>
                 </div>
+                <!-- 
                 <div class="new__todo">
                     <div class="new__todo--item">
                         <label for="input-title" class="new__todo--titlelabel">Title</label>
@@ -45,7 +43,7 @@
                         <textarea id="input-message" class="new__todo--iteminput description"></textarea>
                     </div>
                     <button class="new__todo--btn">Create</button>
-                </div>
+                </div>  -->
             </section>
 
             <div class="transparent"></div>
@@ -78,6 +76,25 @@
                         <p class="list__item--title"><span class="list__item--id">#1</span>Kochen</p>
                         <p class="list__item--description">Abendessen vorbereiten fuer die Familie Abendessen vorbereiten fuer die Familie Abendessen vorbereiten fuer die Familie</p>
                         <div class="list__item--importance">
+                            <p class="list__item--text">Importance: </p>
+                            <p class="lit__item--import">*</p>
+                            <p class="lit__item--import">*</p>
+                            <p class="lit__item--import">*</p>
+                            <p class="lit__item--import">*</p>
+                        </div>
+                        <p class="list__item--text">Erledigen bis: 22.22.2022</p>
+                        <div class="list__item--completed">
+                            <label for="completed">Completed</label>
+                            <input class="list__item--completedinput" type="checkbox" id="completed" name="completed" checked>
+                        </div>
+                        <button class="list__item--btn1">Edit</button>
+                        <button class="list__item--btn2">Delete</button> 
+                    </li>
+                    <li class="list__item">
+                        <p class="list__item--title"><span class="list__item--id">#2</span>Kochen</p>
+                        <p class="list__item--description">Abendessen vorbereiten fuer die Familie Abendessen vorbereiten fuer die Familie Abendessen vorbereiten fuer die Familie</p>
+                        <div class="list__item--importance">
+                            <p class="list__item--text">Importance: </p>
                             <p class="lit__item--import">*</p>
                             <p class="lit__item--import">*</p>
                             <p class="lit__item--import">*</p>
@@ -90,50 +107,11 @@
                         <button class="list__item--btn">Edit</button>
                         <button class="list__item--btn">Delete</button> 
                     </li>
-                    <form class="list__form">
-                        <h2 class="list__form--title">Edit <span class="list__form--titleid">#1</span></h2>
-                        <div class="list__edittitle">
-                            <label for="edit-title" class="list__edittitle--label">Title</label>
-                            <input type="text" id="edit-title" class="list__edittitle--input" pattern="[A-z]">
-                        </div>
-                        <div class="list__editImportance">
-                            <label for="edit-importance" class="list__editimportance--label">Importance</label>
-                            <input type="text" id="edit-importance" class="list__editimportance--input" pattern="[A-z]">
-                        </div>
-                        <div class="list__editdue">
-                            <label for="edit-input-due" class="list__editdue--label">Due Date</label>
-                            <input type="date" id="edit-due" class="list__editdue--input">
-                        </div>
-                        <div class="list__editcompleted">
-                            <label class="list__editcompleted--label" for="edit-finished">Completed</label>
-                            <input class="list__editcompleted--input" type="checkbox" id="edit-finished" name="edit-finished" value="edit-finished">
-                        </div>
-                        <div class="list__editdescription">
-                            <label for="edit-input-description" class="list__editdescription--label">Description</label>
-                            <textarea id="input-message" class="list__editdescription--input"></textarea>
-                        </div>
-                        <button class="list__edit--btn">Update</button>
-                        <button class="list__edit--btn">Delete</button>
-                    </form>
-                    <li class="list__item">
-                        <p class="list__item--title"><span class="list__item--id">#2</span>Kochen</p>
-                        <p class="list__item--description">Abendessen vorbereiten fuer die Familie Abendessen vorbereiten fuer die Familie Abendessen vorbereiten fuer die Familie</p>
-                        <div class="list__item--importance">
-                            <p class="lit__item--import">*</p>
-                            <p class="lit__item--import">*</p>
-                            <p class="lit__item--import">*</p>
-                            <p class="lit__item--import">*</p>
-                        </div>
-                        <div class="list__item--completed">
-                            <label for="completed">Completed</label>
-                            <input class="list__item--completedinput" type="checkbox" id="completed" name="completed" value="completed">
-                        </div>
-                        <button class="list__item--btn">Edit</button>
-                    </li>
                     <li class="list__item">
                         <p class="list__item--title"><span class="list__item--id">#3</span>Kochen</p>
                         <p class="list__item--description">Abendessen vorbereiten fuer die Familie Abendessen vorbereiten fuer die Familie Abendessen vorbereiten fuer die Familie</p>
                         <div class="list__item--importance">
+                            <p class="list__item--text">Importance: </p>
                             <p class="lit__item--import">*</p>
                             <p class="lit__item--import">*</p>
                             <p class="lit__item--import">*</p>
@@ -144,12 +122,41 @@
                             <input class="list__item--completedinput" type="checkbox" id="completed" name="completed" value="completed">
                         </div>
                         <button class="list__item--btn">Edit</button>
+                        <button class="list__item--btn">Delete</button> 
                     </li>
                 </ul>
-            </section>
-
-                          
+            </section>                    
         </main> 
+
+        <section >
+            <form class="new">
+                <h2 class="new__headtitle"><span class="new__function">Edit </span><span class="new__id">#1</span></h2>
+                <div class="new__title">
+                    <label for="new-title" class="new__title--label">Title</label>
+                    <input type="text" id="new-title" class="new__title--input" pattern="[A-z]">
+                </div>
+                <div class="new__importance">
+                    <label for="new-importance" class="new__importance--label">Importance</label>
+                    <input type="text" id="new-importance" class="new__importance--input" pattern="[0-5]">
+                </div>
+                <div class="new__due">
+                    <label for="new-inputdue" class="new__due--label">Due Date</label>
+                    <input type="date" id="new-editdue" class="new__due--input">
+                </div>
+                <div class="new__completed">
+                    <label class="new__completed--label" for="new-finished">Completed</label>
+                    <input class="new__completed--input" type="checkbox" id="new-finished" name="new-finished" value="new-finished">
+                </div>
+                <div class="new__description">
+                    <label for="new-inputdescription" class="new__description--label">Description</label>
+                    <textarea id="input-message" class="new__description--input"></textarea>
+                </div>
+                <button class="new__btn">Update</button>
+                <button class="new__btn">Delete</button>
+                <button class="new__btn">Create</button>
+                <button class="new__btn">Overview</button>
+            </form>
+        </section>
         
         
         <include src="./Html/Footer.html"></include>

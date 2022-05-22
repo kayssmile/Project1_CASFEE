@@ -11,7 +11,8 @@ import * as Tools from "./Tools.js";
 --------------------------------------------------------------*/
 
 async function app(){
- 
+ //   console.log(Tools.createImportance("3"));
+    Tools.renderList()
     window.addEventListener("click", Tools.delegation_home);
     console.log("hellou");
 
