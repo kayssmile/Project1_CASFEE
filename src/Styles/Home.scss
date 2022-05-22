@@ -1,0 +1,377 @@
+/*  Project Todo_App CAS_FEE 
+-------------------------------------------------------------- */
+/*  Main: Mobile First
+-------------------------------------------------------------- */
+
+body{
+  background: linear-gradient(to right, rgb(252, 186, 4), rgb(255, 81, 1));
+  z-index: 111;
+
+//  background: linear-gradient(to right, rgb(29, 38, 49), rgb(9, 1, 255));
+
+}
+
+
+/*  Heading 
+-------------------------------------------------------------- */
+.header{
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgb(251, 226, 2);
+  z-index: 111;
+  &__text{
+    font-size: 22px;
+    font-weight: 600;
+    color:rgb(0, 0, 0);
+    padding-left: 10px;
+  }
+  &__sun{
+    position: absolute;
+    display: none; // inline-block;
+    left: 80%;
+    fill:rgb(246, 251, 0);
+  }
+  &__moon{
+    position: absolute;
+    display: inline-block;
+    left: 80%;
+    fill:rgb(0, 0, 0);
+  }
+}
+
+/*  Main 
+-------------------------------------------------------------- */
+  
+.transparent{
+  position: relative;
+  display: block;
+  width: 100%;
+  background: linear-gradient(to right, rgb(252, 186, 4), rgb(255, 81, 1));
+  height: 35px;
+  z-index: 111;
+}
+
+.new{
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  left: 5%;
+
+  &__btn{
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    background-color:rgb(0, 0, 0);
+      
+    width: 100%;
+    height: 35px;
+    z-index: 111;
+    &--text{
+      color: rgb(255, 255, 255);
+      font-size: 18px;
+      font-weight: 500;
+      margin-left: 15px; 
+    }
+    &--svg{
+      stroke: rgb(255, 255, 255);
+      margin-right: 25px; 
+    }
+  }
+  &__todo{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    border: 1px rgb(230, 154, 14) solid;
+    border-radius: 15px;
+    background-color:rgb(230, 154, 14);
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-top: -527px;
+    transition: margin-top 2s;
+    z-index: 1;
+    &--item{
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      margin-top: 10px;
+    }
+    &--item:nth-child(4){
+      position: relative;
+      display: flex;
+      flex-direction: row;
+      label{
+        position: relative;
+        display: inline-block;
+        padding-right: 20px;
+      }
+    }
+    &--titlelabel{
+      position: relative;
+      display: inline-block;
+      font-size: 20px;
+      font-weight: 400;
+    }
+    &--iteminput{
+      position: relative;
+      display: block;
+      font-size: 22px;
+      line-height: 30px;  
+    }
+    textarea{
+      font-size: 18px;
+      height: 100px;
+    }
+    &--btn{
+      position: relative;
+      display: block;
+      color: rgb(255, 255, 255);
+      background-color:rgb(0, 0, 0);
+      font-size: 18px;
+      font-weight: 500;
+      width: 100%;
+      height: 35px;
+      margin-top: 25px;
+      margin-bottom: 25px;
+    }
+    &--btn:hover{
+      background-color: rgb(59, 58, 58);
+    }
+    input[type="text"], input[type="date"], input[type="email"], textarea{ 
+      outline: none;
+      border: none; 
+    }
+    input[type="text"]:focus, input[type="number"]:focus, input[type="email"]:focus, textarea:focus{
+      border: 2px red solid;
+    }
+  }
+}
+
+.filter{
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  left: 5%;
+  &__btn{
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    height: 35px;
+    color: rgb(255, 255, 255);
+    background-color:rgb(0, 0, 0);
+    z-index: 111;
+    &--text{
+      position: relative;
+      display: inline-block;
+      font-size: 18px;
+      font-weight: 500;
+      margin-left: 15px; 
+    }
+    &--svg{
+      stroke: rgb(255, 255, 255);
+      margin-right: 25px; 
+    }
+  }
+  &__select{
+    position: relative;
+    display: inline-flex;
+    flex-direction: column;
+    z-index: 1;
+    margin-top: -300px;//-400px;
+    transition: margin-top 2s;
+    &--btn{
+      height: 50px;
+      border-bottom: 1px black solid;
+      border-left: 1px black solid;
+      border-right: 1px black solid;
+      font-size: 18px;
+      font-weight: 400;
+      background-color:rgb(251, 226, 2);
+    }
+    &--btn:nth-child(1){
+      border-top: 1px black solid;
+    }
+    &--btn:hover{
+      background-color:rgb(230, 154, 14);
+    }
+  }
+}
+
+.todolist{
+  
+  &__box{
+    position: relative;
+    display: block;
+    text-align: center;
+    &--title{
+      position: relative;
+      display: inline-block;
+      color: black;
+      text-decoration: underline;
+    }
+  }
+}
+
+.list{
+  position: relative;
+  display: flex;
+  flex-direction: column;
+
+ // align-items: center;
+  width: 90%;
+  left: 5%;
+ // border: 1px black solid;
+ // 
+  margin-bottom: 30px;
+  
+  &__item{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    margin-bottom: 25px;
+    background-color:rgb(230, 154, 14);
+    padding: 5px 5px;
+    border: 1px black solid;
+    &--title{
+      position: relative;
+      display: inline-block;
+     // border: 1px black solid;
+   //   text-decoration: underline;
+      width: 100%;
+      margin-bottom: 10px;
+      
+      font-size: 20px;
+    //  background-color:rgb(255, 255, 255);
+    }
+    &--id{
+      font-size: 24px;
+      color: black;
+      font-weight: 600;
+      margin-right: 10px;
+    }
+    &--description{
+      position: relative;
+      display: inline-block;
+      border: 1px black solid;
+      width: 100%;
+      margin-bottom: 10px;
+      font-size: 16px;
+      background-color:rgb(255, 255, 255);
+      padding-left: 5px;
+    }
+    &--importance{
+      position: relative;
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: center;
+   //   border: 1px black solid;
+      width: 100%;
+      margin-top: 12px;
+      margin-bottom: -10px;
+      font-size: 45px;
+    }
+    &--completed{
+      position: relative;
+      display: flex;
+      flex-direction: row;
+      width: 100%;
+      margin-bottom: 10px;
+      font-size: 16px;
+      font-weight: 400;
+    }
+    &--completedinput{
+      position: relative;
+      display: inline-block;
+      margin-left: 15px;
+    }
+    &--btn{
+      position: relative;
+      display: inline-block;
+      width: 100%;
+      margin-bottom: 20px;
+      font-size: 16px;
+      line-height: 35px;
+      color: white;
+      background-color: black;
+    }
+    &--btn:hover{
+      background-color: rgb(59, 58, 58);
+    }
+
+  }
+  &__form{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    background-color:rgb(230, 100, 14);
+    margin-bottom: 25px;
+    padding: 5px 5px;
+  }
+  &__edittitle{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+  }
+  &__editImportance{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+  }
+  &__editdue{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+  }
+  &__editcompleted{
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    
+  }
+  &__editdescription{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+  }
+  
+
+}
+
+
+
+
+
+
+
+
+/*  Main  - Tabletsmall
+-------------------------------------------------------------- */
+
+@media (min-width: 500px){
+
+
+ 
+
+}
+
+
+ 
+/*  Main - Tablet
+-------------------------------------------------------------- */
+
+
+/*  Main - Desktop
+-------------------------------------------------------------- */

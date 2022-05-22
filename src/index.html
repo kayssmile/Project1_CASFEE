@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+
+<html lang="de-CH">
+
+    <include src="./Html/Head.html"></include>
+    
+    <body>
+
+        <header class="header">
+            <h1 class="header__text">TODO - APP</h1>
+            <svg xmlns="http://www.w3.org/2000/svg"  class="header__sun" width="26" height="26"><path class="header__sunpath" fill-rule="evenodd" d="M13 21a1 1 0 011 1v3a1 1 0 11-2 0v-3a1 1 0 011-1zm-5.657-2.343a1 1 0 010 1.414l-2.121 2.121a1 1 0 01-1.414-1.414l2.12-2.121a1 1 0 011.415 0zm12.728 0l2.121 2.121a1 1 0 01-1.414 1.414l-2.121-2.12a1 1 0 011.414-1.415zM13 8a5 5 0 110 10 5 5 0 010-10zm12 4a1 1 0 110 2h-3a1 1 0 110-2h3zM4 12a1 1 0 110 2H1a1 1 0 110-2h3zm18.192-8.192a1 1 0 010 1.414l-2.12 2.121a1 1 0 01-1.415-1.414l2.121-2.121a1 1 0 011.414 0zm-16.97 0l2.121 2.12A1 1 0 015.93 7.344L3.808 5.222a1 1 0 011.414-1.414zM13 0a1 1 0 011 1v3a1 1 0 11-2 0V1a1 1 0 011-1z"/>
+            </svg>
+            <svg xmlns="http://www.w3.org/2000/svg" class="header__moon" width="26" height="26"><path class="header__moonpath" fill-rule="evenodd" d="M13 0c.81 0 1.603.074 2.373.216C10.593 1.199 7 5.43 7 10.5 7 16.299 11.701 21 17.5 21c2.996 0 5.7-1.255 7.613-3.268C23.22 22.572 18.51 26 13 26 5.82 26 0 20.18 0 13S5.82 0 13 0z"/>
+            </svg>
+        </header>
+        
+        <main>
+            <div class="transparent"></div>
+            <section class="new">
+                <div class="new__btn">
+                    <p class="new__btn--text">New TODO</p>
+                    <svg class="new__btn--svg" width="21" height="13" viewBox="0 0 21 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M1 1L10.5 11L20 1" class="new__btn--svg" stroke-width="2"/>
+                    </svg>
+                </div>
+                <div class="new__todo">
+                    <div class="new__todo--item">
+                        <label for="input-title" class="new__todo--titlelabel">Title</label>
+                        <input type="text" id="input-title" class="new__todo--iteminput title" pattern="[A-z]">
+                    </div>
+                    <div class="new__todo--item">
+                        <label for="input-importance" class="new__todo--titlelabel">Importance</label>
+                        <input type="text" id="input-importance" class="new__todo--iteminput importance" pattern="[A-z]">
+                    </div>
+                    <div class="new__todo--item">
+                        <label for="input-due" class="new__todo--titlelabel">Due Date</label>
+                        <input type="date" id="input-due" class="new__todo--iteminput due">
+                    </div>
+                    <div class="new__todo--item">
+                        <label for="finished">Completed</label>
+                        <input type="checkbox" id="finished" name="finished" value="finished">
+                    </div>
+                    <div class="new__todo--item">
+                        <label for="input-description" class="new__todo--titlelabel">Description</label>
+                        <textarea id="input-message" class="new__todo--iteminput description"></textarea>
+                    </div>
+                    <button class="new__todo--btn">Create</button>
+                </div>
+            </section>
+
+            <div class="transparent"></div>
+
+            <section class="filter">
+                <div class="filter__btn">
+                    <p class="filter__btn--text">Filter</p>
+                    <svg class="filter__btn--svg" width="21" height="13" viewBox="0 0 21 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path class="filter__btn--svgpath" d="M1 1L10.5 11L20 1" class="filter__btn--svg" stroke-width="2"/>
+                    </svg>
+                </div>
+                <div class="filter__select">
+                    <button class="filter__select--btn">Name</button>
+                    <button class="filter__select--btn">By Due Date</button>
+                    <button class="filter__select--btn">By creation Date</button>
+                    <button class="filter__select--btn">By Importance</button>
+                    <button class="filter__select--btn">Filter Completed</button>
+                    <button class="filter__select--btn">Filter Open</button>
+                </div>
+            </section>
+
+            <div class="transparent"></div>
+
+            <section class="todolist">
+                <div class="todolist__box">
+                    <h2 class="todolist__box--title">todo-list</h2>
+                </div>
+                <ul class="list">
+                    <li class="list__item">
+                        <p class="list__item--title"><span class="list__item--id">#1</span>Kochen</p>
+                        <p class="list__item--description">Abendessen vorbereiten fuer die Familie Abendessen vorbereiten fuer die Familie Abendessen vorbereiten fuer die Familie</p>
+                        <div class="list__item--importance">
+                            <p class="lit__item--import">*</p>
+                            <p class="lit__item--import">*</p>
+                            <p class="lit__item--import">*</p>
+                            <p class="lit__item--import">*</p>
+                        </div>
+                        <div class="list__item--completed">
+                            <label for="completed">Completed</label>
+                            <input class="list__item--completedinput" type="checkbox" id="completed" name="completed" value="completed">
+                        </div>
+                        <button class="list__item--btn">Edit</button>
+                        <button class="list__item--btn">Delete</button> 
+                    </li>
+                    <form class="list__form">
+                        <h2 class="list__form--title">Edit <span class="list__form--titleid">#1</span></h2>
+                        <div class="list__edittitle">
+                            <label for="edit-title" class="list__edittitle--label">Title</label>
+                            <input type="text" id="edit-title" class="list__edittitle--input" pattern="[A-z]">
+                        </div>
+                        <div class="list__editImportance">
+                            <label for="edit-importance" class="list__editimportance--label">Importance</label>
+                            <input type="text" id="edit-importance" class="list__editimportance--input" pattern="[A-z]">
+                        </div>
+                        <div class="list__editdue">
+                            <label for="edit-input-due" class="list__editdue--label">Due Date</label>
+                            <input type="date" id="edit-due" class="list__editdue--input">
+                        </div>
+                        <div class="list__editcompleted">
+                            <label class="list__editcompleted--label" for="edit-finished">Completed</label>
+                            <input class="list__editcompleted--input" type="checkbox" id="edit-finished" name="edit-finished" value="edit-finished">
+                        </div>
+                        <div class="list__editdescription">
+                            <label for="edit-input-description" class="list__editdescription--label">Description</label>
+                            <textarea id="input-message" class="list__editdescription--input"></textarea>
+                        </div>
+                        <button class="list__edit--btn">Update</button>
+                        <button class="list__edit--btn">Delete</button>
+                    </form>
+                    <li class="list__item">
+                        <p class="list__item--title"><span class="list__item--id">#2</span>Kochen</p>
+                        <p class="list__item--description">Abendessen vorbereiten fuer die Familie Abendessen vorbereiten fuer die Familie Abendessen vorbereiten fuer die Familie</p>
+                        <div class="list__item--importance">
+                            <p class="lit__item--import">*</p>
+                            <p class="lit__item--import">*</p>
+                            <p class="lit__item--import">*</p>
+                            <p class="lit__item--import">*</p>
+                        </div>
+                        <div class="list__item--completed">
+                            <label for="completed">Completed</label>
+                            <input class="list__item--completedinput" type="checkbox" id="completed" name="completed" value="completed">
+                        </div>
+                        <button class="list__item--btn">Edit</button>
+                    </li>
+                    <li class="list__item">
+                        <p class="list__item--title"><span class="list__item--id">#3</span>Kochen</p>
+                        <p class="list__item--description">Abendessen vorbereiten fuer die Familie Abendessen vorbereiten fuer die Familie Abendessen vorbereiten fuer die Familie</p>
+                        <div class="list__item--importance">
+                            <p class="lit__item--import">*</p>
+                            <p class="lit__item--import">*</p>
+                            <p class="lit__item--import">*</p>
+                            <p class="lit__item--import">*</p>
+                        </div>
+                        <div class="list__item--completed">
+                            <label for="completed">Completed</label>
+                            <input class="list__item--completedinput" type="checkbox" id="completed" name="completed" value="completed">
+                        </div>
+                        <button class="list__item--btn">Edit</button>
+                    </li>
+                </ul>
+            </section>
+
+                          
+        </main> 
+        
+        
+        <include src="./Html/Footer.html"></include>
+
+
+    </body>
+
+</html>
+
