@@ -2,91 +2,111 @@
 /* New & Edit TODO
 -------------------------------------------------------------- */
 
+/* Imports, Declarations, Selectors
+-------------------------------------------------------------- */
 
+import * as todos from "./todos.js";
+import * as Tools from "./Tools.js";
 
-function delegation_TODO(function_flag, todoIndex, todos){
+var title_input = document.querySelector(".new__title--input");
+var importance_input = document.querySelector(".new__importance--input");
+var due_input = document.querySelector(".new__due--input");
+var complete_input = document.querySelector(".new__completed--input");
+var description_input = document.querySelector(".new__description--input");
+    
+var id_selector = document.querySelector(".new__id");
+    
+    
+var new_todo = {};
+/*
+const selectors = {
+    title_input : document.querySelector(".new__title--input"),
+    importance_input : document.querySelector(".new__importance--input"),
+    due_input : document.querySelector(".new__due--input"),
+    complete_input : document.querySelector(".new__completed--input"),
+    description_input : document.querySelector(".new__description--input"),
+    form_todo : document.querySelector(".new"),
+    id_todo : document.querySelector(".new__id"),
 
-    const title_input = document.querySelector(".new__title--input");
-    const importance_input = document.querySelector(".new__importance--input");
-    const due_input = document.querySelector(".new__due--input");
-    const complete_input = document.querySelector(".new__completed--input");
-    const description_input = document.querySelector(".new__description--input");
-
-    const form_todo = document.querySelector(".new");
-    const id_todo = document.querySelector(".new_id");
-    console.log(id_todo);
-  //  id_todo.value = todos[todoIndex].id;
-    title_input.value =  todos[todoIndex].Title;
-    importance_input.value = todos[todoIndex].Importance;
-    due_input.value = todos[todoIndex].Due;
-    if(todos[todoIndex].Completed == 1){complete_input.checked = "true"};
-    description_input.value = todos[todoIndex].Entry;
-
-/** 
-    <form class="new">
-    <h2 class="new__headtitle"><span class="new__function">Edit </span><span class="new__id">#1</span></h2>
-    <div class="new__title">
-        <label for="new-title" class="new__title--label">Title</label>
-        <input type="text" id="new-title" class="new__title--input" pattern="[A-z]">
-    </div>
-    <div class="new__importance">
-        <label for="new-importance" class="new__importance--label">Importance</label>
-        <input type="text" id="new-importance" class="new__importance--input" pattern="[A-z]">
-    </div>
-    <div class="new__due">
-        <label for="new-inputdue" class="new__due--label">Due Date</label>
-        <input type="date" id="new-editdue" class="new__due--input">
-    </div>
-    <div class="new__completed">
-        <label class="new__completed--label" for="new-finished">Completed</label>
-        <input class="new__completed--input" type="checkbox" id="new-finished" name="new-finished" value="new-finished">
-    </div>
-    <div class="new__description">
-        <label for="new-inputdescription" class="new__description--label">Description</label>
-        <textarea id="input-message" class="new__description--input"></textarea>
-    </div>
-    <button class="new__btn">Update</button>
-    <button class="new__btn">Delete</button>
-    <button class="new__btn">Create</button>
-    <button class="new__btn">Overview</button>
-</form>
- */
-
-
-
-    if(!function_flag){
-        
-
+    new_todo : function (){
+        this.title_input.value;
+        this.importance_input.value;
+        this.due_input.value;
+        this.complete_input.value;
+        this.description_input.value;
+    },
+    delete : function (){
+        this.title_input.value = "";
+        this.importance_input.value = "";
+        this.due_input.value = "";
+        this.complete_input.value = "";
+        this.description_input.value = "";
+    },
+    update : function(){
+        todo.Title = this.title_input.value;
+        todo.Entry = this.description_input.value;
+        todo.Importance = new_todo.Importance;
+        todo.Due = this.due_input.value;
+        todo.Completed = this.description_input.value;
     }
-    document.querySelector(".new").addEventListener("click", () =>{
+}   */
+
+    function delete_inputs(){
+        title_input.value = "";
+        importance_input.value = "";
+        due_input.value = "";
+        complete_input.value = "";
+        description_input.value = "";
+    }
+
+function delegation_TODO(function_flag, todoId){
+    
+    if(function_flag){
+        delete_inputs();
+        document.querySelector(".create").classList.remove("none");
+        document.querySelector(".update").classList.add("none");
+    }else{
+        document.querySelector(".create").classList.add("none");
+        document.querySelector(".update").classList.remove("none");
+        title_input.value =  todos.get_todos()[todoId-1].Title;
+        importance_input.value = todos.get_todos()[todoId-1].Importance;
+        due_input.value = todos.get_todos()[todoId-1].Due;
+        if(todos.get_todos()[todoId-1].Completed == "1"){complete_input.checked = "true"}
+        description_input.value = todos.get_todos()[todoId-1].Entry; 
+    }
+    document.querySelector(".new").addEventListener("click", () =>{   
         let element = event.target;
-        if(element.matches(".list__item--btn2")){
-            let todoId = event.target.parentNode.dataset.id;
-            for(let x = 0; x < todos.length; x++){
-                if(todos[x].id == todoId){
-                    todos.splice(x,x); 
-                }
+        if(element.matches(".create")){
+            if(function_flag){
+                new_todo.id = id_selector.innerText;
+                new_todo.Title = title_input.value;
+                new_todo.Entry = description_input.value
+                new_todo.Importance = importance_input.value;
+                new_todo.Due = due_input.value;
+                new_todo.Completed = complete_input.value;
+                new_todo.Created = new Date().toISOString().slice(0, 10);
+                todos.new_todo(new_todo);
+                document.querySelector("main").classList.remove("none");
+                document.querySelector(".new").classList.remove("flex");
+                Tools.renderList(todos.get_todos());
             }
-            
         }
-
-
-
-
-
-        // return newtodo;
-
-
-
-
-
+        if(element.matches(".update")){
+            todos.get_todos()[todoId-1].Title = title_input.value;
+            todos.get_todos()[todoId-1].Importance = importance_input.value;
+            todos.get_todos()[todoId-1].Due = due_input.value;
+            todos.get_todos()[todoId-1].Completed = complete_input.checked;
+            todos.get_todos()[todoId-1].Entry = description_input.value;
+        }
+        if(element.matches(".delete")){
+            delete_inputs();
+        }     
+        if(element.matches(".overview")){ 
+            document.querySelector("main").classList.remove("none");
+            document.querySelector(".new").classList.remove("flex");
+            Tools.renderList(todos.get_todos());         
+        }
     })
-
-
-
-
-
- 
 }
 
 

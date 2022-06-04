@@ -23,6 +23,30 @@ body{
   display: flex !important;
 }
 
+.sun{
+  background: linear-gradient(to right, rgb(252, 186, 4), rgb(255, 81, 1)) !important;
+}
+
+.night{
+  background: linear-gradient(to right, rgb(29, 38, 49), rgb(9, 1, 255)) !important;
+}
+
+.byday{
+  background-color:rgb(251, 226, 2);
+}
+
+.byday:hover{
+  background-color:rgb(230, 154, 14);
+}
+
+.bynight{
+  background-color:rgb(14, 126, 230);
+}
+
+.bynight:hover{
+  background-color:rgb(102, 176, 244);
+}
+
 
 /*  Heading 
 -------------------------------------------------------------- */
@@ -45,12 +69,14 @@ body{
     display: none; // inline-block;
     left: 80%;
     fill:rgb(246, 251, 0);
+    cursor: pointer;
   }
   &__moon{
     position: absolute;
     display: inline-block;
     left: 80%;
     fill:rgb(0, 0, 0);
+    cursor: pointer;
   }
 }
 
@@ -72,7 +98,7 @@ body{
   flex-direction: column;
   width: 90%;
   left: 5%;
-
+  cursor: pointer;
   &__btn{
     position: relative;
     display: flex;
@@ -80,7 +106,6 @@ body{
     align-items: center;
     justify-content: center;
     background-color:rgb(0, 0, 0);
-      
     width: 100%;
     height: 35px;
     z-index: 111;
@@ -90,10 +115,12 @@ body{
       font-size: 18px;
       font-weight: 500;
       margin-left: 15px; 
+      text-align: center;  
     }
     &--svg{
       stroke: rgb(255, 255, 255);
       margin-right: 25px; 
+      cursor: pointer;
     }
   }
   &__btn:hover{
@@ -107,12 +134,21 @@ body{
   flex-direction: column;
   width: 90%;
   left: 5%;
+  cursor: pointer;
+  &__container{
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: end;
+    width: 33.33%;
+  }
   &__btn{
     position: relative;
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
     width: 100%;
     height: 35px;
     color: rgb(255, 255, 255);
@@ -123,11 +159,29 @@ body{
       display: inline-block;
       font-size: 18px;
       font-weight: 500;
-      margin-left: 15px; 
+      margin-left: 15px;
+      width: 33.33%; 
+    }
+    &--text:nth-child(2){
+      text-align: center;
+      margin-left: 0px;
     }
     &--svg{
       stroke: rgb(255, 255, 255);
       margin-right: 25px; 
+    }
+    &--cross{
+      position: relative;
+      display: inline-block;
+      fill : none;
+      transform: scale(0.9);
+      margin-left: 15px;
+      path{
+        stroke: white;
+      }
+    }
+    &--cross:hover{
+      transform: scale(1.1);
     }
   }
   &__btn:hover{
@@ -140,23 +194,42 @@ body{
     z-index: 1;
     margin-top: -300px;//-400px;
     transition: margin-top 2s;
+    &--text{
+      position: relative;
+      display: inline-block;
+      font-size: 18px;
+      font-weight: 500;
+    }
+    &--btntext{
+      @extend .filter__select--text;
+      margin-left: 50px;
+    } 
+    &--checkbox{
+      position: relative;
+      display: inline-block;
+      margin-left: 25px;
+    }
     &--btn{
+      position: relative;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
       height: 50px;
       border-bottom: 1px black solid;
       border-left: 1px black solid;
       border-right: 1px black solid;
       font-size: 18px;
       font-weight: 400;
-      background-color:rgb(251, 226, 2);
+      
     }
     &--btn:nth-child(1){
       border-top: 1px black solid;
     }
-    &--btn:hover{
-      background-color:rgb(230, 154, 14);
-    }
   }
 }
+
+
 
 .todolist{
   
@@ -304,10 +377,7 @@ input[type="text"]:focus, input[type="number"]:focus, input[type="email"]:focus,
   border: 1px rgb(230, 154, 14) solid;
   border-radius: 15px;
   background-color:rgb(230, 154, 14);
-  &__headtitle{
 
-
-  }
   &__title{
     position: relative;
     display: flex;

@@ -50,18 +50,40 @@
 
             <section class="filter">
                 <div class="filter__btn">
-                    <p class="filter__btn--text">Filter</p>
-                    <svg class="filter__btn--svg" width="21" height="13" viewBox="0 0 21 13" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path class="filter__btn--svgpath" d="M1 1L10.5 11L20 1" class="filter__btn--svg" stroke-width="2"/>
-                    </svg>
+                    <p class="filter__btn--text">Filter: </p>
+                    <p class="filter__btn--text filter_activ">None</p>       
+                    <div class="filter__container">
+                        <svg class="filter__btn--cross" width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="50" height="50" />
+                            <path class="filter__btn--crosspath" d="M34 15L24 24.5L34 34" stroke-width="2"/>
+                            <path class="filter__btn--crosspath" d="M14 34L24 24.5L14 15" stroke-width="2"/>
+                        </svg>     
+                        <svg class="filter__btn--svg" width="21" height="13" viewBox="0 0 21 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path class="filter__btn--svgpath" d="M1 1L10.5 11L20 1" class="filter__btn--svg" stroke-width="2"/>
+                        </svg>
+                    </div>
                 </div>
                 <div class="filter__select">
-                    <button class="filter__select--btn">Name</button>
-                    <button class="filter__select--btn">By Due Date</button>
-                    <button class="filter__select--btn">By creation Date</button>
-                    <button class="filter__select--btn">By Importance</button>
-                    <button class="filter__select--btn">Filter Completed</button>
-                    <button class="filter__select--btn">Filter Open</button>
+                    <div class="filter__select--btn byday byname">
+                        <p class="filter__select--btntext byname">Name</p>          
+                    </div>
+                    <div class="filter__select--btn byday bydue">
+                        <p class="filter__select--btntext bydue">By Due Date</p>     
+                    </div>
+                    <div class="filter__select--btn byday bycreation">
+                        <p class="filter__select--btntext bycreation">By creation Date</p>  
+                    </div>
+                    <div class="filter__select--btn byday byimportance">
+                        <p class="filter__select--btntext byimportance">By Importance</p>
+                    </div>
+                    <div class="filter__select--btn byday bycompleted">
+                        <p class="filter__select--btntext bycompleted">Filter Completed</p>       
+                        <input type="checkbox" class="filter__select--checkbox checkcompleted">
+                    </div>
+                    <div class="filter__select--btn byday byopen">
+                        <p class="filter__select--btntext byopen">Filter Open</p>    
+                        <input type="checkbox" class="filter__select--checkbox checkbyopen"  >
+                    </div>
                 </div>
             </section>
 
@@ -71,7 +93,7 @@
                 <div class="todolist__box">
                     <h2 class="todolist__box--title">todo-list</h2>
                 </div>
-                <ul class="list">
+                <ul class="list" data-filter = "none">
                     <li class="list__item">
                         <p class="list__item--title"><span class="list__item--id">#1</span>Kochen</p>
                         <p class="list__item--description">Abendessen vorbereiten fuer die Familie Abendessen vorbereiten fuer die Familie Abendessen vorbereiten fuer die Familie</p>
@@ -104,8 +126,8 @@
                             <label for="completed">Completed</label>
                             <input class="list__item--completedinput" type="checkbox" id="completed" name="completed" value="completed">
                         </div>
-                        <button class="list__item--btn">Edit</button>
-                        <button class="list__item--btn">Delete</button> 
+                        <button class="list__item--btn1">Edit</button>
+                        <button class="list__item--btn2">Delete</button> 
                     </li>
                     <li class="list__item">
                         <p class="list__item--title"><span class="list__item--id">#3</span>Kochen</p>
@@ -121,8 +143,8 @@
                             <label for="completed">Completed</label>
                             <input class="list__item--completedinput" type="checkbox" id="completed" name="completed" value="completed">
                         </div>
-                        <button class="list__item--btn">Edit</button>
-                        <button class="list__item--btn">Delete</button> 
+                        <button class="list__item--btn1">Edit</button>
+                        <button class="list__item--btn2">Delete</button> 
                     </li>
                 </ul>
             </section>                    
@@ -130,18 +152,18 @@
 
         <section >
             <form class="new">
-                <h2 class="new__headtitle"><span class="new__function">Edit </span><span class="new__id">#1</span></h2>
+                <h2 class="new__headtitle"><span class="new__function">Edit#</span><span class="new__id"></span></h2>
                 <div class="new__title">
                     <label for="new-title" class="new__title--label">Title</label>
-                    <input type="text" id="new-title" class="new__title--input" pattern="[A-z]">
+                    <input type="text" id="new-title" class="new__title--input" required>
                 </div>
                 <div class="new__importance">
                     <label for="new-importance" class="new__importance--label">Importance</label>
-                    <input type="text" id="new-importance" class="new__importance--input" pattern="[0-5]">
+                    <input type="text" id="new-importance" class="new__importance--input" pattern=^[0-5]{1}$>
                 </div>
                 <div class="new__due">
                     <label for="new-inputdue" class="new__due--label">Due Date</label>
-                    <input type="date" id="new-editdue" class="new__due--input">
+                    <input type="date" id="new-editdue" class="new__due--input" required>
                 </div>
                 <div class="new__completed">
                     <label class="new__completed--label" for="new-finished">Completed</label>
@@ -151,10 +173,10 @@
                     <label for="new-inputdescription" class="new__description--label">Description</label>
                     <textarea id="input-message" class="new__description--input"></textarea>
                 </div>
-                <button class="new__btn">Update</button>
-                <button class="new__btn">Delete</button>
-                <button class="new__btn">Create</button>
-                <button class="new__btn">Overview</button>
+                <button class="new__btn update" type="button">Update</button>
+                <button class="new__btn delete" type="button">Delete</button>
+                <button class="new__btn create" type="button">Create & Overview</button>
+                <button class="new__btn overview" type="button">Overview</button>
             </form>
         </section>
         
