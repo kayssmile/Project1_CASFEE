@@ -1,21 +1,23 @@
-/*  Todo_CASFEE : Home Application
+/*  Todo_CASFEE :  Application
 --------------------------------------------------------------*/
 /*  Imports
 --------------------------------------------------------------*/
 
 import CSS from "../Styles/Stylesheet.scss";
-import * as Tools from "./Tools.js";
-import * as todos from "./todos.js";
+
+import * as controller from "./controller/delegation";
+import * as todos_services from "./controller/services/todos_service";
+import * as render_services from "./view/render.js";
 
 
 /*  App
 --------------------------------------------------------------*/
 
 async function app(){
- //   console.log(Tools.createImportance("3"));
-    Tools.init();
-    Tools.renderList(todos.get_todos());
-    window.addEventListener("click", Tools.delegation_home);
+
+    render_services.init();
+    render_services.renderList(todos_services.get_todos());
+    window.addEventListener("click", controller.delegation_home);
    
 
 }

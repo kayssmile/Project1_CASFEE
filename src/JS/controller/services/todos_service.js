@@ -1,22 +1,27 @@
 /* TODOS
 -------------------------------------------------------------- */
 
+/* TODOS: Imports, Declarations, Selectors
+-------------------------------------------------------------- */
+
+import * as Storage from "../../model/data/storage.js"
 
 
-
-var todos = [
-    {id: 1, Title: "Hausaufgaben", Entry: "Hausaufgaben Vorlesung vom 1.6.2022", Importance: "4", Due: "2023-05-21", Completed: "0", Created: "2002-05-22"},
-    {id: 2, Title: "JavaScript", Entry: "Hausaufgaben Vorlesung vom 2.6.2022", Importance: "3", Due: "2018-06-22", Completed: "1", Created: "2005-05-23"},
-    {id: 3, Title: "OOP/OOD", Entry: "Hausaufgaben Vorlesung vom 3.6.2022", Importance: "2", Due: "2019-01-01", Completed: "0", Created: "2006-05-24"},
-    {id: 4, Title: "CSS3", Entry: "Hausaufgaben Vorlesung vom 4.6.2022", Importance: "5", Due: "2020-03-16", Completed: "0", Created: "2023-05-25"},    
-    {id: 5, Title: "Angular", Entry: "Hausaufgaben Vorlesung vom 5.6.2022", Importance: "1", Due: "2021-06-11", Completed: "1", Created: "2012-05-26"},
-    {id: 6, Title: "React", Entry: "Hausaufgaben Vorlesung vom 11.6.2022", Importance: "1", Due: "2022-08-01", Completed: "1", Created: "2020-05-27"},
-    {id: 7, Title: "Projekt2", Entry: "Hausaufgaben Vorlesung vom 12.6.2022", Importance: "0", Due: "2022-09-09", Completed: "0", Created: "2022-05-28"}
-];
-
+var todos = [];
 var todos_listed = [];
 
+
+
+/* TODOS: Application
+-------------------------------------------------------------- */
+
+todos = Storage.ChecklocalStorage();
+
+
 function get_todos(){
+    for(let x = 0; x < todos.length; x++){
+        todos[x].id = x+1;
+    }
     todos.sort(function(a, b){
         return a.id - b.id;
     });
@@ -25,11 +30,16 @@ function get_todos(){
 
 function new_todo(todo){
     todos.push(todo);
+    Storage.UpdatelocalStorage(todos);
 }
+
 
 function remove_todo(Id){
     todos.splice(getIndex_todo(Id), 1);
+    Storage.UpdatelocalStorage(todos);
 }
+
+
 
 function getIndex_todo(ID){
     for(let todo of todos){
