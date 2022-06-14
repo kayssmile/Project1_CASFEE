@@ -35,7 +35,7 @@ function delegation_home(event){
     let element = event.target;
     
     let list = document.querySelector(".list");
-
+    console.log(element);
     if(element.matches(".header__moon") || element.matches(".header__moonpath")){
         render_services.night_mood();
         document.querySelector(".header").dataset.mood = "night";
@@ -44,7 +44,7 @@ function delegation_home(event){
         render_services.day_mood();
         document.querySelector(".header").dataset.mood = "day";
     }
-    if(element.matches(".newtodo__btn")){
+    if(element.matches(".newtodo__btn") || element.matches(".newtodo__btn--text")){
         document.querySelector("main").classList.add("none");
         document.querySelector(".new").classList.add("flex");
         let todo_id = todos_services.get_todos().length+1;
@@ -66,10 +66,10 @@ function delegation_home(event){
             element = element.parentNode.parentNode.children[1];
         }
         else if(element.matches(".filter__btn--svg")){
-            element = element.parentNode.parentNode.children[1];
+            element = element.parentNode.parentNode.parentNode.children[1];
         }
         else if(element.matches(".filter__btn--svgpath")){
-            element = element.parentNode.parentNode.parentNode.children[1];
+            element = element.parentNode.parentNode.parentNode.parentNode.children[1];
         }
         else if(element.matches(".filter__container")){
             element = element.parentNode.parentNode.children[1];
@@ -150,11 +150,7 @@ function delegation_home(event){
             render_services.renderList(todos_services.sort_byImportance());
         }
 
-      //  if(document.querySelector(".checkbyopen").checked == true){}
-
-        
-     
-        
+      //  if(document.querySelector(".checkbyopen").checked == true){}   
 
     }
 
@@ -168,6 +164,6 @@ function delegation_home(event){
 
 
 
-export {delegation_home };
+export {delegation_home};
 
 

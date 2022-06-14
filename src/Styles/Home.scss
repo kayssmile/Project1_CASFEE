@@ -32,7 +32,7 @@ body{
 }
 
 .byday{
-  background-color:rgb(251, 226, 2);
+  background-color:rgb(251, 226, 2) !important;
 }
 
 .byday:hover{
@@ -40,7 +40,7 @@ body{
 }
 
 .bynight{
-  background-color:rgb(14, 126, 230);
+  background-color:rgb(14, 126, 230) !important;
 }
 
 .bynight:hover{
@@ -109,7 +109,6 @@ body{
     width: 100%;
     height: 35px;
     z-index: 111;
-    
     &--text{
       color: rgb(255, 255, 255);
       font-size: 18px;
@@ -229,10 +228,7 @@ body{
   }
 }
 
-
-
 .todolist{
-  
   &__box{
     position: relative;
     display: block;
@@ -254,9 +250,23 @@ body{
   width: 90%;
   left: 5%;
  // border: 1px black solid;
- // 
   margin-bottom: 30px;
-  
+  &__empty{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100px;
+    background-color: rgb(255, 255, 255);
+    margin-top: 50px;
+    border: 2px black solid;
+    &--text{
+      font-size: 22px;
+      font-weight: 600;
+      color:rgb(0, 0, 0);
+    }
+  }
   &__item{
     position: relative;
     display: flex;

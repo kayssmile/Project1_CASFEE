@@ -7,8 +7,7 @@
 
 import * as todos_services from "./services/todos_service.js";
 import * as render_services from "../view/render.js";
-import * as Storage from "../model/data/storage.js";
-
+import * as storage_service from "../model/data/storage_service.js";
 
 
 var title_input = document.querySelector(".new__title--input");
@@ -16,7 +15,6 @@ var importance_input = document.querySelector(".new__importance--input");
 var due_input = document.querySelector(".new__due--input");
 var complete_input = document.querySelector(".new__completed--input");
 var description_input = document.querySelector(".new__description--input");
-    
     
     
 var new_todo = {};
@@ -78,7 +76,6 @@ function delegation_TODO(function_flag, todoId){
     }
     document.querySelector(".new").addEventListener("click", () =>{   
         let element = event.target;
-        console.log(this);
         if(element.matches(".create")){
             if(function_flag){
                 new_todo.id = todoId;
@@ -101,7 +98,10 @@ function delegation_TODO(function_flag, todoId){
             todos_services.get_todos()[todoId-1].Due = due_input.value;
             todos_services.get_todos()[todoId-1].Completed = complete_input.checked;
             todos_services.get_todos()[todoId-1].Entry = description_input.value;
-            Storage.UpdatelocalStorage(todos_services.get_todos());
+            
+            storage_service.update_todo(todos_services.get_todos()[todoId-1]);
+
+         //   storage_service.UpdatelocalStorage(todos_services.get_todos());
 
         }
         if(element.matches(".delete")){

@@ -4,7 +4,7 @@
 /* TODOS: Imports, Declarations, Selectors
 -------------------------------------------------------------- */
 
-import * as Storage from "../../model/data/storage.js"
+import * as Storage_service from "../../model/data/storage_service.js"
 
 
 var todos = [];
@@ -15,8 +15,16 @@ var todos_listed = [];
 /* TODOS: Application
 -------------------------------------------------------------- */
 
-todos = Storage.ChecklocalStorage();
 
+async function init_storage(){
+
+    todos = await Storage_service.get_todos();
+
+    //  let todos_db = await Storage.get_todos();
+}
+
+
+//todos = Storage_service.ChecklocalStorage();
 
 function get_todos(){
     for(let x = 0; x < todos.length; x++){
@@ -30,16 +38,17 @@ function get_todos(){
 
 function new_todo(todo){
     todos.push(todo);
-    Storage.UpdatelocalStorage(todos);
-}
+    Storage_service.new_todo(todo);
 
+ //   Storage.UpdatelocalStorage(todos);
+}
 
 function remove_todo(Id){
     todos.splice(getIndex_todo(Id), 1);
-    Storage.UpdatelocalStorage(todos);
+    Storage_service.delete_todo(Id);
+
+ //   Storage.UpdatelocalStorage(todos);
 }
-
-
 
 function getIndex_todo(ID){
     for(let todo of todos){
@@ -96,7 +105,6 @@ function filter_completed(){
         return arr.Completed == 0;
     })
     return arr_filtered;
-
 }
 
 function filter_open(){
@@ -107,4 +115,4 @@ function filter_open(){
 }
 
 
-export {get_todos, remove_todo, new_todo, sort_name, sort_byDue, sort_bycreation, sort_byImportance, filter_completed, filter_open}
+export { init_storage, get_todos, remove_todo, new_todo, sort_name, sort_byDue, sort_bycreation, sort_byImportance, filter_completed, filter_open}
