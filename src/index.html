@@ -94,6 +94,7 @@
                     <h2 class="todolist__box--title">todo-list</h2>
                 </div>
                 <ul class="list" data-filter = "none">
+                <!-- 
                     <li class="list__item">
                         <p class="list__item--title"><span class="list__item--id">#1</span>Kochen</p>
                         <p class="list__item--description">Abendessen vorbereiten fuer die Familie Abendessen vorbereiten fuer die Familie Abendessen vorbereiten fuer die Familie</p>
@@ -145,7 +146,7 @@
                         </div>
                         <button class="list__item--btn1">Edit</button>
                         <button class="list__item--btn2">Delete</button> 
-                    </li>
+                    </li> -->
                 </ul>
             </section>                    
         </main> 
@@ -159,7 +160,7 @@
                 </div>
                 <div class="new__importance">
                     <label for="new-importance" class="new__importance--label">Importance</label>
-                    <input type="text" id="new-importance" class="new__importance--input" pattern=^[0-5]{1}$>
+                    <input type="number" min="1" max="5" id="new-importance" class="new__importance--input">
                 </div>
                 <div class="new__due">
                     <label for="new-inputdue" class="new__due--label">Due Date</label>
@@ -171,13 +172,18 @@
                 </div>
                 <div class="new__description">
                     <label for="new-inputdescription" class="new__description--label">Description</label>
-                    <textarea id="input-message" class="new__description--input"></textarea>
+                    <textarea  id="input-message" class="new__description--input"></textarea>
                 </div>
-                <button class="new__btn update" type="button">Update</button>
-                <button class="new__btn delete" type="button">Delete</button>
-                <button class="new__btn create" type="button">Create & Overview</button>
-                <button class="new__btn overview" type="button">Overview</button>
+                <button class="new__btn update" type="Button">Update</button>
+                <button class="new__btn delete" type="Button">Delete</button>
+                <button class="new__btn create" type="Button">Create & Overview</button>
+                <button class="new__btn overview" type="Button">Overview</button>
+                <div class="alert">
+                    <p class = "alert__text">Bitte Korrekte eingabe machen</p>
+                    <button class="alert__btn" type="button"><p class="alert__btn--text">OK</p></button>
+                </div>
             </form>
+            
         </section>
            
         <include src="./Html/Footer.html"></include>

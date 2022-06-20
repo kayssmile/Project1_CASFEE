@@ -484,12 +484,40 @@ input[type="text"]:focus, input[type="number"]:focus, input[type="email"]:focus,
 
 }
   
-
+.alert{
+  position: absolute;
+  display: none; //flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 111;
+  width: 90%;
+  padding: 10px 0px;
+  border: 2px black solid;
+  background-color: rgb(239, 236, 42);
+  top: 30%;
+  left: 5%;
+  &__text{
+    font-size: 22px;
+    color:rgb(0, 0, 0);
+    font-weight: 600;
+  }
+  &__btn{
+    position: relative;
+    display: inline-block;
+    margin: 10px 0px;
+    width: 10%;
+    height: 35px;
+    background-color:rgb(0, 0, 0);
+    color: white;
+    font-size: 20px;
+    font-weight: 300;
+  }
+}
 /*  Fixed Width
 -------------------------------------------------------------- */
 
 @media (min-width: 850px){
-
   .newtodo{
     width: 800px;
     left: calc(50% - 400px);
@@ -498,16 +526,13 @@ input[type="text"]:focus, input[type="number"]:focus, input[type="email"]:focus,
     width: 800px;  
     left: calc(50% - 400px);
   }
-
   .list{
     width: 800px;
     left: calc(50% - 400px);
   }
-
   .new{
     width: 800px;
     left: calc(50% - 400px);
   }
-   
 }
  

@@ -1,31 +1,48 @@
+/* Storage - Service (API)
+-------------------------------------------------------------- */
 
+async function rest_api(settings) {
+  var response;
+  try {
+    if (settings.Method == "GET") {
+      response = await fetch(`${settings.URL}`);
+    } else {
+      response = await fetch(`${settings.URL}`, {
+        method: settings.Method,
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(settings.data),
+      });
+    }
 
-var default_entries = [
-    {id: 1, Title: "Hausaufgaben", Entry: "Hausaufgaben Vorlesung vom 1.6.2022", Importance: "4", Due: "2023-05-21", Completed: "0", Created: "2002-05-22"},
-    {id: 2, Title: "JavaScript", Entry: "Hausaufgaben Vorlesung vom 2.6.2022", Importance: "3", Due: "2018-06-22", Completed: "1", Created: "2005-05-23"},
-    {id: 3, Title: "OOP/OOD", Entry: "Hausaufgaben Vorlesung vom 3.6.2022", Importance: "2", Due: "2019-01-01", Completed: "0", Created: "2006-05-24"},
-    {id: 4, Title: "CSS3", Entry: "Hausaufgaben Vorlesung vom 4.6.2022", Importance: "5", Due: "2020-03-16", Completed: "0", Created: "2023-05-25"},    
-    {id: 5, Title: "Angular", Entry: "Hausaufgaben Vorlesung vom 5.6.2022", Importance: "1", Due: "2021-06-11", Completed: "1", Created: "2012-05-26"},
-    {id: 6, Title: "React", Entry: "Hausaufgaben Vorlesung vom 11.6.2022", Importance: "1", Due: "2022-08-01", Completed: "1", Created: "2020-05-27"},
-    {id: 7, Title: "Projekt2", Entry: "Hausaufgaben Vorlesung vom 12.6.2022", Importance: "0", Due: "2022-09-09", Completed: "0", Created: "2022-05-28"}
-];
-
-
-
-function ChecklocalStorage(){
-    if(localStorage.getItem("TODOS") && localStorage.getItem("TODOS") != "[]"){
-        let TODOS = JSON.parse((localStorage.getItem("TODOS")));
-        return TODOS;
-    }else{
-        let default_obj = JSON.stringify(default_entries);
-        localStorage.setItem("TODOS", default_obj);
-        return default_entries;
-    }   
+    return await response.json();
+  } catch (error) {
+    console.log(error);
+  }
 }
 
-function UpdatelocalStorage(todos){
-    localStorage.setItem("TODOS", JSON.stringify(todos));
+/* 
+async function new_todo(data){
+    console.log("lets go");
+    console.log(data);
+    try{
+        const response = await fetch("http://127.0.0.1:3001/new_todo",{
+                        method: "POST",
+                        headers: {
+                                 "Content-Type": "application/json",
+                        },
+                        body: JSON.stringify(data),
+                    })
+     //   return  await response.json();
+    } 
+    catch(error){
+            console.log(error);
+    }
 }
+
+
+
 
 async function get_todos(){
     try{
@@ -44,25 +61,35 @@ async function get_todos(){
 }
 
 
-async function new_todo(data){
-    try{
-        const response = await fetch("http://127.0.0.1:3001/new_todo",{
-                        method: "POST",
-                        headers: {
-                                 "Content-Type": "application/json",
-                        },
-                        body: JSON.stringify(data),
-                    })
-        return  await response.json();
-    } 
-    catch(error){
-            console.log(error);
-    }
-}
+
+
 
 async function update_todo(data){
+
     try{
-        const response = await fetch("http://127.0.0.1:3001/update_todo",{
+        const response = await fetch("http://127.0.0.1:3001/update_todo",{ // Put
+                        method: "PUT",
+                        headers: {
+                                 "Content-Type": "application/json",
+                        },
+                        body: JSON.stringify(data),
+                    })
+        return  await response.json();
+    } 
+    catch(error){
+            console.log(error);
+    }
+}
+*/
+/* 
+
+*/
+
+/*
+async function update_todo(data){
+
+    try{
+        const response = await fetch("http://127.0.0.1:3001/update_todo",{ // Put
                         method: "POST",
                         headers: {
                                  "Content-Type": "application/json",
@@ -76,29 +103,52 @@ async function update_todo(data){
     }
 }
 
+
 async function delete_todo(todo_id){
-    console.log(todo_id);
+   // ${todo_id.todo_id}
     try{
-        const response = await fetch("http://127.0.0.1:3001/delete_todo",{
+        const response = await fetch(`http://127.0.0.1:3001/del_todo`,{ // delete todos/:id //delete/todo/${todo_id.todo_id}
                         method: "POST",
                         headers: {
                                  "Content-Type": "application/json",
                         },
                         body: JSON.stringify(todo_id)
                     })
+      //  console.log(response);           
         return  await response.json();
     } 
     catch(error){
             console.log(error);
     }
 }
-  
+   */
 /* 
+async function del_todo(todo_id){
+    // ${todo_id.todo_id}
+     try{
+         const response = await fetch(`http://127.0.0.1:3001/delete/todo/${todo_id.todo_id}`,{ // delete todos/:id //delete/todo/${todo_id.todo_id}
+                         method: "DELETE",
+                         headers: {
+                                  "Content-Type": "application/json",
+                         },
+                         body: JSON.stringify(todo_id)
+                     })
+       //  console.log(response);           
+         return  await response.json();
+     } 
+     catch(error){
+             console.log(error);
+     }
+ }
+
+
     async function get_test(){
         var API_test = await start_rest();
         console.log(API_test);
     }
     
-*/  
- 
-export {ChecklocalStorage, UpdatelocalStorage, get_todos, new_todo, update_todo, delete_todo}
+*/
+
+export { rest_api };
+
+// export {ChecklocalStorage, UpdatelocalStorage, get_todos, new_todo, update_todo, delete_todo, del_todo, rest_api}

@@ -1,65 +1,41 @@
-
 import Datastore from '@seald-io/nedb';
 const db = new Datastore({filename: './data/todos.db', autoload: true});
 
-// await db.loadDatabaseAsync();
-
-
-
-class todo{
-    constructor(Title, Entry, Importance, Due, Completed) {
-
-        this.Title = Title;
-        this.Entry = Entry;
-        this.Importance = Importance;
-        this.Due = Due;
-        this.Completed = Completed;
-        this.Created = new Date(); 
-
-    }
+function add(todo){
+    db.insert(todo, function (err, newDoc) { 
+        if (newDoc) {
+            return "Success";
+        }else{
+            return "failure";
+        }
+    });
 }
 
-class dbservice{
-    constructor() {
-
-    }
-    add(todo){
-        db.insert(todo, function (err, newDoc) {
-            if (newDoc) {
-                return "Success";
-            }else{
-                return "failure";
-            }
-        });
-    }
-    update(todoid, todo){
-        db.update({id: todoid}, {todo}, {returnUpdatedDocs: true}, function (err, numDocs, doc) {
-          //  callback(err, doc);
-
-
-          console.log(err);
-          console.log(numDocs);
-          console.log(doc);
-
-        });
-    }
-    delete(todo_id){
-        console.log(todo_id);
-        db.remove({ id: todo_id }, {}, function (err, numRemoved) {
-           console.log(numRemoved);
-          });
-    }
-    all(callback) {
-        db.find({}, function (err, docs) {
-            if(err){return "db_error";}
-            return callback(docs);
-        });
-    }
+function update(todoid, todo){
+    db.update({"id":todoid}, {"id":todo.id,"Title":todo.Title,"Entry":todo.Entry,"Importance":todo.Importance,"Due":todo.Due,"Completed":todo.Completed}, {returnUpdatedDocs: true}, function (err, numDocs, doc) {
+        if (doc) {
+            return "Success";
+        }else{
+            return "failure";
+        }
+    });
 }
 
-// export const todo_storage = new todos_db();
+function del(todo_id){
+    db.remove({"id":parseInt(todo_id.id)}, {}, function (err, numRemoved) {
+        if (numRemoved) {
+            return "Success";
+        }else{
+            return "failure";
+        }
+      });
+}
 
-export const storage = new dbservice();
+function all(callback) {
+    db.find({}, function (err, docs) {
+    if(err){return "db_error";}
+    return callback(docs);
+    });
+}
 
-// todo_storage.add(todos);
-
+export {add, update, del, all}
