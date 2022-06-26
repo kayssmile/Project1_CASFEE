@@ -1,9 +1,11 @@
+/* TODO - APP : Controller 
+-------------------------------------------------------------- */
 import * as todo_tools from "./todo.js";
-import * as todos_services from "./services/todos_service.js";
+import * as todos_services from "../services/todos_service.js";
 import * as render_services from "../view/render.js";
+import * as storage_service from "../model/data/storage_service.js";
 
 var filter_flag = 0;
-
 var activ_filter = document.querySelector(".filter_activ");
 
 /* Controller : Delegation
@@ -12,17 +14,18 @@ var activ_filter = document.querySelector(".filter_activ");
 function delegation_home(event) {
   let element = event.target;
   let list = document.querySelector(".list");
-  console.log(element);
   if (
     element.matches(".header__moon") ||
     element.matches(".header__moonpath")
   ) {
     render_services.night_mood();
     document.querySelector(".header").dataset.mood = "night";
+    storage_service.setlocalStorage("night");
   }
   if (element.matches(".header__sun") || element.matches(".header__sunpath")) {
     render_services.day_mood();
     document.querySelector(".header").dataset.mood = "day";
+    storage_service.setlocalStorage("day");
   }
   if (
     element.matches(".newtodo__btn") ||
@@ -45,23 +48,14 @@ function delegation_home(event) {
     render_services.renderList(todos_services.get_todos());
   }
   if (
+    element.matches(".filter__btn--container") ||
     element.matches(".filter__btn") ||
     element.matches(".filter__btn--text") ||
     element.matches(".filter__btn--svg") ||
     element.matches(".filter__btn--svgpath") ||
     element.matches(".filter__container")
   ) {
-    if (element.matches(".filter__btn")) {
-      element = element.parentNode.children[1];
-    } else if (element.matches(".filter__btn--text")) {
-      element = element.parentNode.parentNode.children[1];
-    } else if (element.matches(".filter__btn--svg")) {
-      element = element.parentNode.parentNode.parentNode.children[1];
-    } else if (element.matches(".filter__btn--svgpath")) {
-      element = element.parentNode.parentNode.parentNode.parentNode.children[1];
-    } else if (element.matches(".filter__container")) {
-      element = element.parentNode.parentNode.children[1];
-    }
+    element = document.querySelector(".filter__select");
     if (filter_flag === 0) {
       document.querySelector(".filter__btn--svg").style.transform =
         "rotate(180deg)";
@@ -101,7 +95,7 @@ function delegation_home(event) {
     }
     if (document.querySelector(".checkcompleted").checked === false) {
       document.querySelector(".checkbyopen").disabled = false;
-      render_services.renderList(todos_services.get_todos());
+      render_services.renderList(todos_services.get_listed());
     }
   }
   if (element.matches(".checkbyopen")) {
@@ -110,10 +104,11 @@ function delegation_home(event) {
       render_services.renderList(todos_services.filter_open());
     } else if (document.querySelector(".checkbyopen").checked === false) {
       document.querySelector(".checkcompleted").disabled = false;
-      render_services.renderList(todos_services.get_todos());
+      render_services.renderList(todos_services.get_listed());
     }
   }
   if (element.matches(".list__item--btn1")) {
+    event.preventDefault();
     document.querySelector("main").classList.add("none");
     document.querySelector(".new").classList.add("flex");
     document.querySelector(".new__function").textContent =
@@ -123,6 +118,7 @@ function delegation_home(event) {
     todo_tools.delegation_TODO(0, todo_id);
   }
   if (element.matches(".list__item--btn2")) {
+    event.preventDefault();
     let todoId = event.target.parentNode.dataset.id;
     todos_services.remove_todo(todoId);
     if (list.dataset.filter === "none") {
@@ -138,6 +134,5 @@ function delegation_home(event) {
     }
   }
 }
-
 
 export { delegation_home };

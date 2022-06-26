@@ -4,7 +4,7 @@
 /* Imports, Declarations, Selectors
 -------------------------------------------------------------- */
 
-import * as todos_services from "./services/todos_service.js";
+import * as todos_services from "../services/todos_service.js";
 import * as render_services from "../view/render.js";
 import * as storage_service from "../model/data/storage_service.js";
 
@@ -18,6 +18,7 @@ const error_box = document.querySelector(".alert");
 const error_text = document.querySelector(".alert__text");
 
 var new_todo = {};
+var safety_flag = 0;
 
 function delete_inputs() {
   title_input.value = "";
@@ -29,18 +30,25 @@ function delete_inputs() {
 
 function check_inputs() {
   if (!title_input.value) {
-    error_box.style.display = "flex";
+    error_box.classList.add("flex");
     error_text.innerText = "Bitte gueltigen Titel eingeben";
+    safety_flag = 1;
     return "1";
   }
-  if (!importance_input.value) {
-    error_box.style.display = "flex";
-    error_text.innerText = "Bitte Gueltige Nummer/Importance eingeben";
+  if (
+    !importance_input.value ||
+    importance_input.value > 5 ||
+    importance_input.value < 1
+  ) {
+    error_box.classList.add("flex");
+    error_text.innerText = "Bitte Gueltige Impotance eingeben Nummer 1 - 5";
+    safety_flag = 1;
     return "1";
   }
   if (!due_input.value) {
-    error_box.style.display = "flex";
+    error_box.classList.add("flex");
     error_text.innerText = "Bitte Gueltiges Datum eingeben";
+    safety_flag = 1;
     return "1";
   }
   return "0";
@@ -64,9 +72,9 @@ function delegation_TODO(function_flag, todoId) {
       }
     }
   }
-  document.querySelector(".new").addEventListener("click", async () => {
+  document.querySelector(".new").addEventListener("click", async (event) => {
     let element = event.target;
-    if (element.matches(".create")) {
+    if (element.matches(".create") && safety_flag === 0) {
       if (check_inputs() == 0) {
         if (function_flag) {
           new_todo = {};
@@ -75,17 +83,16 @@ function delegation_TODO(function_flag, todoId) {
           new_todo.Entry = description_input.value;
           new_todo.Importance = importance_input.value;
           new_todo.Due = due_input.value;
-          new_todo.Completed = complete_input.value;
+          new_todo.Completed = complete_input.checked;
           new_todo.Created = new Date().toISOString().slice(0, 10);
           await todos_services.new_todo(new_todo);
-          console.log("3");
           document.querySelector("main").classList.remove("none");
           document.querySelector(".new").classList.remove("flex");
           render_services.renderList(todos_services.get_todos());
         }
       }
     }
-    if (element.matches(".update")) {
+    if (element.matches(".update") && safety_flag === 0) {
       for (let todo of todos_services.get_todos()) {
         if (todo.id == todoId) {
           todo.Title = title_input.value;
@@ -101,10 +108,10 @@ function delegation_TODO(function_flag, todoId) {
         }
       }
     }
-    if (element.matches(".delete")) {
+    if (element.matches(".delete") && safety_flag === 0) {
       delete_inputs();
     }
-    if (element.matches(".overview")) {
+    if (element.matches(".overview") && safety_flag === 0) {
       document.querySelector("main").classList.remove("none");
       document.querySelector(".new").classList.remove("flex");
       render_services.renderList(todos_services.get_todos());
@@ -113,7 +120,8 @@ function delegation_TODO(function_flag, todoId) {
       element.matches(".alert__btn") ||
       element.matches(".alert__btn--text")
     ) {
-      error_box.style = "";
+      safety_flag = 0;
+      error_box.classList.remove("flex");
       error_text.innerText = "";
     }
   });

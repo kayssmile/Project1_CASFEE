@@ -2,11 +2,18 @@
 
 <html lang="de-CH">
 
-    <include src="./Html/Head.html"></include>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>TODO Application</title>
+       <!-- <link rel="icon" type="image/png" href="./Images/Logo.png">   -->
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Merriweather+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+    </head>
     
     <body>
 
-        <header class="header" data-mood = "day">
+        <header class="header" data-mood ="day">
             <h1 class="header__text">TODO - APP</h1>
             <svg xmlns="http://www.w3.org/2000/svg"  class="header__sun" width="26" height="26"><path class="header__sunpath" fill-rule="evenodd" d="M13 21a1 1 0 011 1v3a1 1 0 11-2 0v-3a1 1 0 011-1zm-5.657-2.343a1 1 0 010 1.414l-2.121 2.121a1 1 0 01-1.414-1.414l2.12-2.121a1 1 0 011.415 0zm12.728 0l2.121 2.121a1 1 0 01-1.414 1.414l-2.121-2.12a1 1 0 011.414-1.415zM13 8a5 5 0 110 10 5 5 0 010-10zm12 4a1 1 0 110 2h-3a1 1 0 110-2h3zM4 12a1 1 0 110 2H1a1 1 0 110-2h3zm18.192-8.192a1 1 0 010 1.414l-2.12 2.121a1 1 0 01-1.415-1.414l2.121-2.121a1 1 0 011.414 0zm-16.97 0l2.121 2.12A1 1 0 015.93 7.344L3.808 5.222a1 1 0 011.414-1.414zM13 0a1 1 0 011 1v3a1 1 0 11-2 0V1a1 1 0 011-1z"/>
             </svg>
@@ -20,37 +27,15 @@
                 <div class="newtodo__btn">
                     <p class="newtodo__btn--text">New TODO</p>
                 </div>
-                <!-- 
-                <div class="new__todo">
-                    <div class="new__todo--item">
-                        <label for="input-title" class="new__todo--titlelabel">Title</label>
-                        <input type="text" id="input-title" class="new__todo--iteminput title" pattern="[A-z]">
-                    </div>
-                    <div class="new__todo--item">
-                        <label for="input-importance" class="new__todo--titlelabel">Importance</label>
-                        <input type="text" id="input-importance" class="new__todo--iteminput importance" pattern="[A-z]">
-                    </div>
-                    <div class="new__todo--item">
-                        <label for="input-due" class="new__todo--titlelabel">Due Date</label>
-                        <input type="date" id="input-due" class="new__todo--iteminput due">
-                    </div>
-                    <div class="new__todo--item">
-                        <label for="finished">Completed</label>
-                        <input type="checkbox" id="finished" name="finished" value="finished">
-                    </div>
-                    <div class="new__todo--item">
-                        <label for="input-description" class="new__todo--titlelabel">Description</label>
-                        <textarea id="input-message" class="new__todo--iteminput description"></textarea>
-                    </div>
-                    <button class="new__todo--btn">Create</button>
-                </div>  -->
             </section>
 
             <div class="transparent"></div>
 
             <section class="filter">
                 <div class="filter__btn">
-                    <p class="filter__btn--text">Filter: </p>
+                    <div class="filter__btn--container">
+                        <p class="filter__btn--text">Filter: </p>
+                    </div>
                     <p class="filter__btn--text filter_activ">None</p>       
                     <div class="filter__container">
                         <svg class="filter__btn--cross" width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -59,7 +44,7 @@
                             <path class="filter__btn--crosspath" d="M14 34L24 24.5L14 15" stroke-width="2"/>
                         </svg>     
                         <svg class="filter__btn--svg" width="21" height="13" viewBox="0 0 21 13" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path class="filter__btn--svgpath" d="M1 1L10.5 11L20 1" class="filter__btn--svg" stroke-width="2"/>
+                            <path class="filter__btn--svgpath" d="M1 1L10.5 11L20 1" stroke-width="2"/>
                         </svg>
                     </div>
                 </div>
@@ -93,61 +78,7 @@
                 <div class="todolist__box">
                     <h2 class="todolist__box--title">todo-list</h2>
                 </div>
-                <ul class="list" data-filter = "none">
-                <!-- 
-                    <li class="list__item">
-                        <p class="list__item--title"><span class="list__item--id">#1</span>Kochen</p>
-                        <p class="list__item--description">Abendessen vorbereiten fuer die Familie Abendessen vorbereiten fuer die Familie Abendessen vorbereiten fuer die Familie</p>
-                        <div class="list__item--importance">
-                            <p class="list__item--text">Importance: </p>
-                            <p class="lit__item--import">*</p>
-                            <p class="lit__item--import">*</p>
-                            <p class="lit__item--import">*</p>
-                            <p class="lit__item--import">*</p>
-                        </div>
-                        <p class="list__item--text">Erledigen bis: 22.22.2022</p>
-                        <div class="list__item--completed">
-                            <label for="completed">Completed</label>
-                            <input class="list__item--completedinput" type="checkbox" id="completed" name="completed" checked>
-                        </div>
-                        <button class="list__item--btn1">Edit</button>
-                        <button class="list__item--btn2">Delete</button> 
-                    </li>
-                    <li class="list__item">
-                        <p class="list__item--title"><span class="list__item--id">#2</span>Kochen</p>
-                        <p class="list__item--description">Abendessen vorbereiten fuer die Familie Abendessen vorbereiten fuer die Familie Abendessen vorbereiten fuer die Familie</p>
-                        <div class="list__item--importance">
-                            <p class="list__item--text">Importance: </p>
-                            <p class="lit__item--import">*</p>
-                            <p class="lit__item--import">*</p>
-                            <p class="lit__item--import">*</p>
-                            <p class="lit__item--import">*</p>
-                        </div>
-                        <div class="list__item--completed">
-                            <label for="completed">Completed</label>
-                            <input class="list__item--completedinput" type="checkbox" id="completed" name="completed" value="completed">
-                        </div>
-                        <button class="list__item--btn1">Edit</button>
-                        <button class="list__item--btn2">Delete</button> 
-                    </li>
-                    <li class="list__item">
-                        <p class="list__item--title"><span class="list__item--id">#3</span>Kochen</p>
-                        <p class="list__item--description">Abendessen vorbereiten fuer die Familie Abendessen vorbereiten fuer die Familie Abendessen vorbereiten fuer die Familie</p>
-                        <div class="list__item--importance">
-                            <p class="list__item--text">Importance: </p>
-                            <p class="lit__item--import">*</p>
-                            <p class="lit__item--import">*</p>
-                            <p class="lit__item--import">*</p>
-                            <p class="lit__item--import">*</p>
-                        </div>
-                        <div class="list__item--completed">
-                            <label for="completed">Completed</label>
-                            <input class="list__item--completedinput" type="checkbox" id="completed" name="completed" value="completed">
-                        </div>
-                        <button class="list__item--btn1">Edit</button>
-                        <button class="list__item--btn2">Delete</button> 
-                    </li> -->
-                </ul>
+                <ul class="list" data-filter = "none"></ul>
             </section>                    
         </main> 
 
@@ -160,18 +91,18 @@
                 </div>
                 <div class="new__importance">
                     <label for="new-importance" class="new__importance--label">Importance</label>
-                    <input type="number" min="1" max="5" id="new-importance" class="new__importance--input">
+                    <input type="number" placeholder="Number 1 - 5" min="1" max="5" id="new-importance" class="new__importance--input">
                 </div>
                 <div class="new__due">
-                    <label for="new-inputdue" class="new__due--label">Due Date</label>
-                    <input type="date" id="new-editdue" class="new__due--input" required>
+                    <label for="new-due" class="new__due--label">Due Date</label>
+                    <input type="date" id="new-due" class="new__due--input" required>
                 </div>
                 <div class="new__completed">
                     <label class="new__completed--label" for="new-finished">Completed</label>
                     <input class="new__completed--input" type="checkbox" id="new-finished" name="new-finished" value="new-finished">
                 </div>
                 <div class="new__description">
-                    <label for="new-inputdescription" class="new__description--label">Description</label>
+                    <label for="input-message" class="new__description--label">Description</label>
                     <textarea  id="input-message" class="new__description--input"></textarea>
                 </div>
                 <button class="new__btn update" type="Button">Update</button>
@@ -180,14 +111,11 @@
                 <button class="new__btn overview" type="Button">Overview</button>
                 <div class="alert">
                     <p class = "alert__text">Bitte Korrekte eingabe machen</p>
-                    <button class="alert__btn" type="button"><p class="alert__btn--text">OK</p></button>
+                    <button class="alert__btn" type="button">OK</button>
                 </div>
-            </form>
-            
+            </form>    
         </section>
-           
-        <include src="./Html/Footer.html"></include>
-
+        
     </body>
 
 </html>

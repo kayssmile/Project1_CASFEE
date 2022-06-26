@@ -1,7 +1,7 @@
 /* TODOS - Services
 -------------------------------------------------------------- */
 
-import * as Storage_service from "../../model/data/storage_service.js";
+import * as Storage_service from "../model/data/storage_service.js";
 
 var todos = [];
 var todos_listed = [];
@@ -20,6 +20,10 @@ function get_todos() {
   });
   todos_listed = todos;
   return todos;
+}
+
+function get_listed(){
+  return todos_listed;
 }
 
 async function new_todo(todo) {
@@ -95,14 +99,15 @@ function sort_byImportance() {
 }
 
 function filter_completed() {
-  let arr_filtered = todos.filter((arr) => {
+  let arr_filtered = todos_listed.filter((arr) => {
     return arr.Completed == 0;
   });
   return arr_filtered;
+
 }
 
 function filter_open() {
-  let arr_filtered = todos.filter((arr) => {
+  let arr_filtered = todos_listed.filter((arr) => {
     return arr.Completed == 1;
   });
   return arr_filtered;
@@ -111,6 +116,7 @@ function filter_open() {
 export {
   init_storage,
   get_todos,
+  get_listed,
   remove_todo,
   new_todo,
   sort_name,

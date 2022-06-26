@@ -1,10 +1,14 @@
+/*  TODO - APP : Model 
+-------------------------------------------------------------- */
+
+import * as storage_service from "../model/data/storage_service.js";
+
 /*  Model : Rendering
 -------------------------------------------------------------- */
 
 function renderList(todos) {
   let liste = document.querySelector(".list");
   liste.innerHTML = "";
-  console.log(todos);
   if (todos.length > 0) {
     let counter = 1;
     for (let todo of todos) {
@@ -25,11 +29,11 @@ function renderList(todos) {
             <p class="list__item--text">Erledigen bis: ${createDate(todo.Due)}</p>
             <div class="list__item--completed">
                 <label for="completed">Completed</label>
-                <input class="list__item--completedinput" type="checkbox" id="completed" name="completed" ${checked} >
+                <input class="list__item--completedinput" type="checkbox" id="completed" name="completed" ${checked} disabled>
             </div>
             <button class="list__item--btn1">Edit</button>
             <button class="list__item--btn2">Delete</button> 
-            `;
+      `;
       liste.appendChild(element);
       counter++;
     }
@@ -63,18 +67,18 @@ function createImportance(importance) {
 function init() {
   document.querySelector(".checkbyopen").checked = false;
   document.querySelector(".checkcompleted").checked = false;
+  document.querySelector(".header").dataset.mood = storage_service.ChecklocalStorage();
 }
 
 function night_mood() {
-  document.querySelector(".header__moon").style.display = "none";
-  document.querySelector(".header__sun").style.display = "inline-block";
-  document.querySelector(".header").style.backgroundColor = "rgb(0, 0, 0)";
-  document.querySelector(".header__text").style.color = "white";
-  document.querySelector(".todolist__box--title").style.color = "white";
+  document.querySelector(".header__moon").classList.add("none");
+  document.querySelector(".header__sun").classList.add("flex");
+  document.querySelector(".header").classList.add("backBlack");
+  document.querySelector(".header__text").classList.add("white");
+  document.querySelector(".todolist__box--title").classList.add("white");
   document.querySelector("body").classList.add("night");
-  document.querySelector(".new").style.backgroundColor = "rgb(14, 126, 230)";
-  document.querySelector(".new").style.border = "1px rgb(0, 0, 0) solid";
-  document.querySelector(".alert").classList.add("bynight");
+  document.querySelector(".new").classList.add("new_night");
+  document.querySelector(".alert").classList.add("bynight_important");
   if (document.querySelector(".list__empty")) {
     document.querySelector(".list__empty").classList.remove("byday");
     document.querySelector(".list__empty").classList.add("bynight");
@@ -85,7 +89,7 @@ function night_mood() {
   }
   let items = document.querySelectorAll(".list__item");
   for (let item of items) {
-    item.style.backgroundColor = "rgb(14, 126, 230)";
+    item.classList.add("bynight_important");//
   }
   let filter_elements = document.querySelectorAll(".filter__select--btn");
   for (let filter_element of filter_elements) {
@@ -95,14 +99,14 @@ function night_mood() {
 }
 
 function day_mood() {
-  document.querySelector(".header__moon").style.display = "inline-block";
-  document.querySelector(".header__sun").style.display = "none";
-  document.querySelector(".header").style.backgroundColor = "rgb(251, 226, 2)";
-  document.querySelector(".header__text").style.color = "black";
-  document.querySelector(".todolist__box--title").style.color = "black";
+  document.querySelector(".header__moon").classList.remove("none");
+  document.querySelector(".header__sun").classList.remove("flex");
+  document.querySelector(".header").classList.remove("backBlack");
+  document.querySelector(".header__text").classList.remove("white");
+  document.querySelector(".todolist__box--title").classList.remove("white");
   document.querySelector("body").classList.remove("night");
-  document.querySelector(".new").style = "";
-  document.querySelector(".alert").classList.remove("bynight");
+  document.querySelector(".new").classList.remove("new_night");
+  document.querySelector(".alert").classList.remove("bynight_important");
   if (document.querySelector(".list__empty")) {
     document.querySelector(".list__empty").classList.remove("bynight");
     document.querySelector(".list__empty").classList.add("byday");
@@ -113,7 +117,7 @@ function day_mood() {
   }
   let items = document.querySelectorAll(".list__item");
   for (let item of items) {
-    item.style = "";
+    item.classList.remove("bynight_important");
   }
   let filter_elements = document.querySelectorAll(".filter__select--btn");
   for (let filter_element of filter_elements) {

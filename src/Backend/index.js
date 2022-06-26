@@ -1,5 +1,4 @@
-
-/* Project : REST - API 
+/* TODO - APP  : REST - API 
 -------------------------------------------------------------- */
 /*  Dependencies                                                                                                                                                                         Head Heart Web <3 Consult your WebDoc about Middleware, Margin and Padding 
 -------------------------------------------------------------- */
@@ -9,7 +8,6 @@ import cors from 'cors';
 const app = express();
 
 import {todo_Routes} from './routes/todo-routes.js';
-import * as rest_Controllers from './controller/rest-controllers.js';
 
 /* Main 
 -------------------------------------------------------------- */
@@ -25,12 +23,12 @@ app.use(errorHandler);
 /* Middleware
 -------------------------------------------------------------- */
 
-function notFound(req, res, next) {
+function notFound(req, res) {
     res.setHeader("Content-Type", 'text/html');
     res.send(404, "Confound it all!  We could not find ye's page! ");
 }
 
-function errorHandler(err, req, res, next) {
+function errorHandler(err, req, res) {
     res.status(500).end(err.message);
 }
 

@@ -8,7 +8,6 @@
     "watch": "webpack-dev-server --config webpack.dev.js --open",
     "build": "webpack --config webpack.prod.js",
     "w3c": "html-validator --file ./src/index.html  --verbose",
-    "stylelint": "stylelint \"**/*.css\"",
     "eslint": "eslint ./**/*.js"
   },
   "repository": {
